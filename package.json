@@ -1,0 +1,26 @@
+{
+  "name": "facebook-messenger-bot",
+  "version": "1.0.0",
+  "description": "Messenger Bot - NodeJS using Botkit.ai",
+  "main": "src/loader.js",
+  "scripts": {
+    "dev": "nodemon"
+  },
+  "repository": "https://github.com/gucastiliao/facebook-messenger-bot.git",
+  "author": "Gustavo Castilião <gucastiliao@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "botkit": "^0.6.7",
+    "dotenv": "^4.0.0",
+    "lodash": "^4.17.4",
+    "request": "^2.83.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^8.1.2",
+    "eslint": "^4.14.0",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.5.1"
+  }
+}
