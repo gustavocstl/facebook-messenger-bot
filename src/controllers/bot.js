@@ -9,7 +9,7 @@ const bot = controller.spawn({});
 
 require('./setup');
 
-controller.setupWebserver(process.env.PORT, () => {
+controller.setupWebserver(process.env.BOTKIT_PORT, () => {
   controller.createWebhookEndpoints(controller.webserver, bot, () => {
     console.log('Bot online!');
   });

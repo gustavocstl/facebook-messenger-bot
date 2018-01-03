@@ -1,46 +1,35 @@
+const mongoose = require('mongoose');
+
+const Conversations = mongoose.model('Conversations');
+
 module.exports = (controller) => {
+  function botReply(bot, message, response) {
+    if (typeof response === 'object') {
+      bot.replyWithTyping(message, { attachment: response });
+    }
+
+    bot.replyWithTyping(message, response);
+  }
+
   controller.on('facebook_postback', (bot, message) => {
-    if (message.payload === 'chat_started') {
-      const attachment = {
-        type: 'template',
-        payload: {
-          template_type: 'button',
-          text: 'Use the buttons below or type a question :D',
-          buttons: [
-            {
-              type: 'postback',
-              title: 'Item 1',
-              payload: 'item1',
-            },
-            {
-              type: 'postback',
-              title: 'Item 2',
-              payload: 'item2',
-            },
-          ],
-        },
-      };
-
-      bot.replyWithTyping(message, {
-        attachment,
-      });
-    }
-
-    if (message.payload === 'item1') {
-      bot.replyWithTyping(message, 'Item1!');
-    }
-
-    if (message.payload === 'item2') {
-      bot.replyWithTyping(message, 'Item2!');
-    }
-  });
-
-
-  controller.hears(['hello'], 'message_received,chat_started', (bot, message) => {
-    bot.replyWithTyping(message, 'Hey, there!');
+    Conversations.findOne(
+      { payload: message.payload },
+      (error, conversation) => {
+        if (!conversation) return false;
+        return botReply(bot, message, conversation.response);
+      },
+    );
   });
 
   controller.hears('(.*)', 'message_received', (bot, message) => {
-    bot.replyWithTyping(message, `you said ${message.match[1]}`);
+    const hears = message.match[1].split(' ');
+
+    Conversations.findOne(
+      { hears: { $elemMatch: { $in: hears } } },
+      (error, conversation) => {
+        if (!conversation) return false;
+        return botReply(bot, message, conversation.response);
+      },
+    );
   });
 };
