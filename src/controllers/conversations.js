@@ -5,10 +5,10 @@ const Conversations = mongoose.model('Conversations');
 module.exports = (controller) => {
   function botReply(bot, message, response) {
     if (typeof response === 'object') {
-      bot.replyWithTyping(message, { attachment: response });
+      return bot.replyWithTyping(message, { attachment: response });
     }
 
-    bot.replyWithTyping(message, response);
+    return bot.replyWithTyping(message, response);
   }
 
   controller.on('facebook_postback', (bot, message) => {

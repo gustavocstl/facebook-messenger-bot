@@ -1,0 +1,15 @@
+{
+  "greetingsMessage": "Hello! Click in the button to start a conversation",
+  "persistentMenuItems": [
+    {
+      "type": "postback",
+      "title": "Item 1",
+      "payload": "Item 1"
+    },
+    {
+      "type": "postback",
+      "title": "Item 2",
+      "payload": "Item 2"
+    }
+  ]
+}

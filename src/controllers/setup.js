@@ -1,5 +1,6 @@
 /* eslint no-console: ["error", { allow: ["warn", "error"] }] */
 const request = require('request');
+const botConfigs = require('../config/bot-configs.json');
 
 const settings = {
   facebookSettingsUrl: `https://graph.facebook.com/v2.6/me/thread_settings?access_token=${process.env.ACCESS_TOKEN}`,
@@ -15,23 +16,12 @@ const settings = {
   persistentMenu: {
     setting_type: 'call_to_actions',
     thread_state: 'existing_thread',
-    call_to_actions: [
-      {
-        type: 'postback',
-        title: 'Item 112321321',
-        payload: 'Item 1',
-      },
-      {
-        type: 'postback',
-        title: 'Item 2',
-        payload: 'Item 2',
-      },
-    ],
+    call_to_actions: botConfigs.persistentMenuItems,
   },
   greetingsMessage: {
     setting_type: 'greeting',
     greeting: {
-      text: 'Hello! Click in the button to start a conversation',
+      text: botConfigs.greetingsMessage,
     },
   },
 };
