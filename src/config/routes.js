@@ -1,10 +1,13 @@
 const express = require('express');
 const Conversations = require('../models/conversations/conversationService');
+const PersistentMenuItems = require('../models/persistentMenuItems/persistentMenuItemsService');
 
 module.exports = (server, controller) => {
   const api = express.Router();
   server.use('/api', api);
+
   Conversations.register(api, '/conversations');
+  PersistentMenuItems.register(api, '/persistent-item');
 
   server.post('/facebook/receive', (request, response) => {
     response.status(200);

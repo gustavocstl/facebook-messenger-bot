@@ -5,6 +5,6 @@ const controller = botkit.facebookbot({
   verify_token: process.env.VERIFY_TOKEN,
 });
 
-require('./setup');
 require('../config/server')(controller);
 require('./conversations')(controller);
+require('./setup');
