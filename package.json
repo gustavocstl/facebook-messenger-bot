@@ -4,7 +4,8 @@
   "description": "Messenger Bot - NodeJS using Botkit.ai",
   "main": "src/loader.js",
   "scripts": {
-    "dev": "nodemon"
+    "dev": "nodemon",
+    "start": "pm2 start src/loader.js --name messenger-bot"
   },
   "repository": "https://github.com/gucastiliao/facebook-messenger-bot.git",
   "author": "Gustavo Castilião <gucastiliao@gmail.com>",
@@ -17,6 +18,7 @@
     "lodash": "^4.17.4",
     "mongoose": "^5.0.0-rc1",
     "node-restful": "^0.2.6",
+    "pm2": "^2.9.1",
     "request": "^2.83.0"
   },
   "devDependencies": {
