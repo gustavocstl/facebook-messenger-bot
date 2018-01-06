@@ -5,14 +5,6 @@ const controller = botkit.facebookbot({
   verify_token: process.env.VERIFY_TOKEN,
 });
 
-const bot = controller.spawn({});
-
 require('./setup');
-
-controller.setupWebserver(process.env.BOTKIT_PORT, () => {
-  controller.createWebhookEndpoints(controller.webserver, bot, () => {
-    console.log('Bot online!');
-  });
-});
-
+require('../config/server')(controller);
 require('./conversations')(controller);
