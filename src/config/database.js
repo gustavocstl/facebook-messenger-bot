@@ -3,6 +3,6 @@ const mongoose = require('mongoose');
 
 mongoose.Promise = global.Promise;
 
-module.exports = mongoose.connect(`mongodb://${process.env.DB_HOST}/${process.env.DB_NAME}`)
+module.exports = mongoose.connect(process.env.MONGODB_URI)
   .then(() => console.warn('Database connection succesful'))
   .catch(error => console.error(error));
